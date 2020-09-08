@@ -34,26 +34,28 @@
 	</div>
 	
 	<script>
-        var img = document.getElementsByTagName("img");
-        for(i=0;i<img.length;i++){
-            img[i].style.left = i*600 + "px";
-        }
-		var dingShi = setInterval(function(){
-            var lunBo = setInterval(function(){
-                    for(i=0;i<img.length;i++){
-                        img[i].style.left = parseInt(img[i].style.left) - 20 +"px";
-                        while(parseInt(img[i].style.left) == -600){
-                            img[i].style.left = 2400 +"px";
-                            clearInterval(lunBo);
-                        }
-                        while(parseInt(img[0].style.left)==-600*i){
-                            clearInterval(lunBo);
-                            break;
-                        };
-                    };
+        	window.onload = function () {
+			var img = document.getElementsByTagName("img");
+			for(i=0;i<img.length;i++){
+			    img[i].style.left = i*600 + "px";
+			}
+			var dingShi = setInterval(function(){
+			var lunBo = setInterval(function(){
+				for(i=0;i<img.length;i++){
+					img[i].style.left = parseInt(img[i].style.left) - 20 +"px";
+					while(parseInt(img[i].style.left) == -600){
+					    img[i].style.left = 2400 +"px";
+					    clearInterval(lunBo);
+					}
+					while(parseInt(img[0].style.left)==-600*i){
+					    clearInterval(lunBo);
+					    break;
+					};
+				    };
 
-            },15)
-		},3000);
+			    },15)
+			},3000);
+		}
 	</script>
 </body>
 </html>
