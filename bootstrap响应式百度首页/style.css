@@ -1,0 +1,73 @@
+*{
+	margin:0;
+	padding:0;
+}
+.row{
+	margin:10px 0 15px 15px;
+	position:relative;
+	/*background-color:red;*/
+}
+.row .col-md-5 div a{
+	float:left;
+	padding:13px;
+}
+.row .col-md-5 div a,.row .col-md-3 div a,#content div .text-left,#content-bottom .col-md-4 div a{
+	text-decoration:none;
+	color:#000;
+}
+#content div .text-right{
+	color:#a0a0a0;
+}
+.row .head-left div .right{
+	margin-left:65px;
+}
+.row .col-md-3 div{
+	float:left;
+	padding:13px;
+}
+
+#content{
+	margin-top:50px;
+}
+#content div a{
+	text-decoration:none;
+}
+#content div .text-left{
+	position:absolute;
+	left:10%;
+}
+#content div .text-right{
+	position:absolute;
+	left:81%;
+}
+
+#content div{
+	position:relative;
+}
+#content-bottom div div{
+	width:38%;
+	float:left;
+	margin-top:20px;
+	margin-left:10px;
+}
+
+#content-bottom div div a span:first-child{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	color:#a0a0a0;
+	text-align:center;
+	line-height:20px;
+	background-color:#eee;
+	border-radius:50%;
+	margin:0 10px;
+}
+#content-bottom div div a span:nth-child(2){
+	color:black;
+}
+
+.row form div input{
+	width:75%;
+	margin-left:6%;
+	float:left;
+}

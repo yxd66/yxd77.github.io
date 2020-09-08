@@ -1,0 +1,11 @@
+#content-bottom{
+	margin-top:100px;
+}
+
+#content-bottom div>div{
+	width:100%;
+}
+#content-bottom div div a{
+	margin-left:10%;
+}
+
