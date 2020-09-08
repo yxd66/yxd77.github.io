@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>雪花飘落</title>
+	<style>
+		html{
+			margin:0;
+			padding:0;
+		}
+		body{
+			height:671px;
+			width:1366px;
+			background-color:#abc;
+			overflow:hidden;
+		}
+		div{
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<script src="file:///D:/网站开发/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script>
+	function snow(div){
+		div = document.createElement('div');
+			div.innerHTML = '*';
+		$('body').append(div);
+		var size = Math.random()*30 + 20;
+		var apple = {"display":"block","fontSize":size+'px',"position":"absolute","left":Math.random()*window.innerWidth + '0px',"top":"0px"};
+		$(div).css(apple);
+		var num = parseInt(Math.random()*10/5);
+		if(Math.random()<0.45){
+			num = -parseInt(Math.random()*10/5);
+		}
+		var mun = parseInt(Math.random()*10/5)+1;
+		var move = setInterval(function(){
+			if(parseInt($(div).css('top')) < innerHeight||0 < parseInt($(div).css('left')) < innerWidth){
+				$(div).css('left',parseInt($(div).css('left')) + num + 'px');
+				$(div).css('top',parseInt($(div).css('top')) + mun + 'px');
+				}else{
+					$(div).css('display','none');
+				}
+		},20);
+		console.log(div);
+	};
+	setInterval(function(){
+		snow();
+	},200);
+	</script>
+</body>
+</html>

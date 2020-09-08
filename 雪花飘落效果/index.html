@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>雪花飘落</title>
+	<style>
+		html{
+			margin:0;
+			padding:0;
+		}
+		body{
+			height:671px;
+			width:1366px;
+			background-color:#abc;
+			overflow:hidden;
+		}
+		div{
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<script src="file:///D:/网站开发/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script>
+		function snow(div){
+			var body = document.getElementsByTagName('body')[0];
+			div = document.createElement('div');
+			div.innerHTML = '*';
+			div = body.appendChild(div);
+			var size = Math.random()*30 + 20;
+			div.style.display = 'block';
+			div.style.fontSize = size + 'px';
+			div.style.position = 'absolute';
+			div.style.left = Math.random()*window.innerWidth + '0px';
+			div.style.top = 0 + 'px';
+			var num = parseInt(Math.random()*10/5);
+			if(Math.random()<0.45){
+				num = -parseInt(Math.random()*10/5);
+			}
+			var mun = parseInt(Math.random()*10/5)+1;
+			var move = setInterval(function(){
+				if(parseInt(div.style.top) < innerHeight||0 < parseInt(div.style.left) < innerWidth){
+						div.style.left =  parseInt(div.style.left) + num + 'px';
+						div.style.top =  parseInt(div.style.top) + mun + 'px';
+				}else{
+					div.style.display = 'none';
+				}
+			},20);
+		};
+		setInterval(function(){
+			snow();
+		},200);
+	</script>
+</body>
+</html>

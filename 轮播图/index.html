@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易轮播图</title>
+    <link rel="stylesheet" href="test.css">
+    <style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+            position:absolute;
+			width:600px;
+			height:400px;
+			overflow:hidden;
+		}
+		div img{
+			width:600px;
+			height:400px;
+			float:left;
+            position:absolute;
+		}
+		
+    </style>
+</head>
+<body>
+	<div>
+		<img src="image/0.jpg">
+		<img src="image/1.jpg">
+		<img src="image/2.jpg">
+		<img src="image/3.jpg">
+		<img src="image/4.png">
+	</div>
+	
+	<script>
+        var img = document.getElementsByTagName("img");
+        for(i=0;i<img.length;i++){
+            img[i].style.left = i*600 + "px";
+        }
+		var dingShi = setInterval(function(){
+            var lunBo = setInterval(function(){
+                    for(i=0;i<img.length;i++){
+                        img[i].style.left = parseInt(img[i].style.left) - 20 +"px";
+                        while(parseInt(img[i].style.left) == -600){
+                            img[i].style.left = 2400 +"px";
+                            clearInterval(lunBo);
+                        }
+                        while(parseInt(img[0].style.left)==-600*i){
+                            clearInterval(lunBo);
+                            break;
+                        };
+                    };
+
+            },15)
+		},3000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易轮播图</title>
+    <link rel="stylesheet" href="test.css">
+    <style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+            position:absolute;
+			width:600px;
+			height:400px;
+			overflow:hidden;
+		}
+		div img{
+			width:600px;
+			height:400px;
+			float:left;
+            position:absolute;
+		}
+		
+    </style>
+</head>
+<body>
+	<div>
+		<img src="file:///D:/图片/二次元/pc端/0.jpg" alt="">
+		<img src="file:///D:/图片/二次元/pc端/1.jpg" alt="">
+		<img src="file:///D:/图片/二次元/pc端/2.jpg" alt="">
+		<img src="file:///D:/图片/二次元/pc端/3.jpg" alt="">
+		<img src="file:///D:/图片/二次元/pc端/4.png" alt="">
+	</div>
+	<script src="file:///D:/网站开发/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script>
+		for(i=0;i<$('img').length;i++){$($('img')[i]).css('left',i*600 + 'px');}var dingShi = setInterval(function(){ var lunBo = setInterval(function(){for(i=0;i<$('img').length;i++){$($('img')[i]).css('left',parseInt($('img')[i].style.left) - 10 +'px');while(parseInt($('img')[i].style.left) == -600){$($('img')[i]).css('left',2400 +'px');clearInterval(lunBo);} while(parseInt($('img')[0].style.left)==-600*i){ clearInterval(lunBo);break;};};},10)},3000);
+	</script>
+</body>
+</html>
