@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>学生管理系统</title>
+	<link rel="stylesheet" href="../public/index.css">
+</head>
+<body>
+	<a href="/index/add">添加学生</a>
+	<table cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>语文</td>
+				<td>数学</td>
+				<td>英语</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			{{ each student }}
+				<tr>
+					<td>{{$index + 1}}</td>
+					<td>{{$value.name}}</td>
+					<td>{{$value.age}}</td>
+					<td>{{$value.chinese}}</td>
+					<td>{{$value.math}}</td>
+					<td>{{$value.English}}</td>
+					<td>
+						<a href="/index/change?id={{ $value._id }}">编辑</a>
+						<a href="/index/delete?id={{ $value._id }}">删除</a>
+					</td>
+				</tr>
+			{{ /each }}
+		</tbody>
+	</table>
+</body>
+</html>

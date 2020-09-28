@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+* {
+	font-size:12px;
+}
+div,
+div ul
+{
+	width: 290px;
+	height: 155px;
+}
+ul {
+	list-style:none;
+}
+div ul li:nth-child(-n+4){
+	border-top:1px solid #f4f4f4;
+}
+div ul li:nth-child(1),
+div ul li:nth-child(4),
+div ul li:nth-child(5),
+div ul li:nth-child(8){
+	width: 70px;
+}
+div ul li{
+	float:left;
+	width: 71px;
+	height: 77px;
+	border:1px solid #f4f4f4;
+	border-left:1px solid transparent;
+	border-top:1px solid transparent;
+}
+div ul li a{
+	display:inline-block;
+	width: 100%;
+	height:100%;
+	text-align:center;
+	text-decoration: none;
+	color:#ccc;
+}
+div ul li a span{
+	background-image:url(file://C:/Users/asus/Desktop/pc端淘宝网/image/jinglingtu.png);
+}
+div ul li a p{
+	height: 30px;
+	line-height:30px;
+	color:#333;
+}
+div ul li a span{
+	display:block;
+	width: 24px;
+	height: 24px;
+	margin:12px auto 0px;
+}
+</style>
+<body>
+	<div>
+							<ul>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>充话费</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>旅行</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>车险</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>游戏</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>彩票</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>电影</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>酒店</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span></span>
+								<p>理财</p>
+							</a>
+						</li>
+					</ul>
+	</div>
+	<script>
+	 	var span = document.getElementsByTagName('span')
+	 	for (var i = 0;i < span.length; i++) {
+	 		span[i].style.backgroundPosition = '0 -' + 44*i + 'px' 
+	 	}
+	</script>		
+</body>
+</html>

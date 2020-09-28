@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加学生</title>
+	<link rel="stylesheet" href="../public/add.css">
+</head>
+<body>
+	<form action="/index/change" method="post">
+	<input type="hidden" name='id' value="{{student._id}}">
+		<div>
+			<label for="">姓名</label>
+			<div>
+				<input type="text" name='name' value="{{student.name}}">
+			</div>
+		</div>
+		<div>
+			<label for="">年龄</label>
+			<div>
+				<input type="number" name='age' value="{{student.age}}">
+			</div>
+		</div>
+		<div>
+			<label for="">语文</label>
+			<div>
+				<input type="number" name='chinese' value="{{student.chinese}}">
+			</div>
+		</div>
+		<div>
+			<label for="">数学</label>
+			<div>
+				<input type="number" name='math' value="{{student.math}}">
+			</div>
+		</div>
+		<div>
+			<label for="">英语</label>
+			<div>
+				<input type="number" name='English' value="{{student.English}}">
+			</div>
+		</div>
+		<input type="submit" value="提交">
+	</form>
+</body>
+</html>
