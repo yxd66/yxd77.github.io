@@ -1,6 +1,7 @@
 
 
 body {
+	margin:0 auto !important;
 	width: 1349px;
 	position:relative;
 	color: #ccc;
