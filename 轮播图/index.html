@@ -4,58 +4,197 @@
     <meta charset="UTF-8">
     <title>简易轮播图</title>
     <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2019105_qysyx2notx.css">
     <style>
 		*{
 			margin:0;
 			padding:0;
 		}
-		div{
-            position:absolute;
-			width:600px;
+		.content{
+            position:relative;
 			height:400px;
+			width: 600px;
 			overflow:hidden;
+		}
+		.img {
+			position:absolute;
+			width: 3600px;
+			height: 400px;
 		}
 		div img{
 			width:600px;
 			height:400px;
 			float:left;
-            position:absolute;
 		}
-		
+		span {
+			position:absolute;
+			top:40%;
+			width: 50px;
+			height: 50px;
+			line-height:50px;
+			text-align:center;
+			border-radius:50%;
+			background-color: #fff;
+			display:none;
+		}
+
+		.icon-xiaoyuhao {
+			left:0;
+		}
+		.icon-dayuhao {
+			left:550px;
+		}
+		ul {
+			list-style:none;
+			height: 30px;
+			position:absolute;
+			height: 40px;
+			width: 200px;
+			top:350px;
+			left:200px;
+		}
+		li {
+			float:left;
+			margin:10px 10px;
+			width: 20px;
+			height: 20px;
+			background-color: rgba(255,255,255,.3);
+			border-radius:50%;
+		}
+		li:first-child {
+			background-color: #fff;
+		}
     </style>
 </head>
 <body>
-	<div>
-		<img src="image/0.jpg">
-		<img src="image/1.jpg">
-		<img src="image/2.jpg">
-		<img src="image/3.jpg">
-		<img src="image/4.png">
+	<div class="content">
+		<div class="img">
+			<img src="image/0.jpg">
+			<img src="image/1.jpg">
+			<img src="image/2.jpg">
+			<img src="image/3.jpg">
+			<img src="image/4.jpg">
+		</div>
+		<span class="iconfont icon-xiaoyuhao"></span>
+		<span class="iconfont icon-dayuhao"></span>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
 	</div>
 	
 	<script>
-        	window.onload = function () {
-			var img = document.getElementsByTagName("img");
-			for(i=0;i<img.length;i++){
-			    img[i].style.left = i*600 + "px";
-			}
-			var dingShi = setInterval(function(){
-			var lunBo = setInterval(function(){
-				for(i=0;i<img.length;i++){
-					img[i].style.left = parseInt(img[i].style.left) - 20 +"px";
-					while(parseInt(img[i].style.left) == -600){
-					    img[i].style.left = 2400 +"px";
-					    clearInterval(lunBo);
-					}
-					while(parseInt(img[0].style.left)==-600*i){
-					    clearInterval(lunBo);
-					    break;
-					};
-				    };
-
-			    },15)
-			},3000);
-		}
+	//初始化
+		var index = 0
+		var content = document.querySelector('.content')
+		var div = document.querySelector('.img')
+		var li = document.getElementsByTagName('li')
+		var spanL = document.querySelector('.icon-xiaoyuhao')
+		var spanR = document.querySelector('.icon-dayuhao')
+        var img = document.getElementsByTagName("img");
+        for (var i = 0; i < li.length; i++) {
+        	li[i].setAttribute('index',i)
+        }
+        //左右箭头显示隐藏
+        content.addEventListener('mouseover',function () {
+        	spanL.style.display = 'block'
+        	spanR.style.display = 'block'
+        	clearInterval(timer)
+        	
+        })
+        content.addEventListener('mouseout',function () {
+	        spanL.style.display = 'none'
+	        spanR.style.display = 'none'
+	        timer = setInterval(function () {
+	        	spanR.click()
+	        },2500)
+	    })
+	    //封装动画函数
+        var animate = function (obj, target, i) {
+        	clearInterval(obj.timer)
+        	obj.timer = setInterval(function () {
+        		obj.style.left = obj.offsetLeft - 50*i+ 'px'
+        		if (obj.offsetLeft == target) {
+        			clearInterval(obj.timer)
+        		}
+        	},10)
+        }
+        //点击圆点移动图片
+        for (let j = 0; j < li.length; j++) {
+        	li[j].addEventListener('click',function () {
+        		num = j
+        		mun = j
+        		var i;
+        		var L = li[j].getAttribute('index') * -img[0].offsetWidth
+	        	for (let j = 0; j < li.length; j++) {
+		        	li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
+		        }
+		        li[j].style.backgroundColor = '#fff'
+		        if (index > j) {
+		        	i = -1*(index-j)
+		        } else {
+		        	i = 1*(j-index)
+		        } 
+		        index = j
+		        animate(div,L,i)
+	        })
+        }
+        //点击按钮移动图片
+        var num = 0
+        var mun = 0
+        var first = img[0].cloneNode(true)
+        div.appendChild(first)
+        spanL.addEventListener('click',function () {
+        	mun--
+        	index = mun
+        	if (mun < 0) {
+        		mun = 4
+        	}
+        	if (num > 0) {
+        		num = num - 5
+        	}
+        	if (num == -5) {
+	        	num = 0
+	        }
+	        if (num == 0) {
+	        	div.style.left = '-3000px'
+	        }
+	        for (let j = 0; j < li.length; j++) {
+		        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
+		    }
+	        li[mun].style.backgroundColor = '#fff'
+        	num--
+	        animate(div,-(3000+img[0].offsetWidth*num),-1)
+	        
+        })
+        spanR.addEventListener('click',function () {
+        	mun++
+        	index = mun
+        	if (mun > 4) {
+        		mun = 0
+        	}
+        	if (num < 0) {
+        		num = num + 5
+        	}
+        	if (num == 5) {
+	        	num = 0
+	        	div.style.left = '0px'
+	        }
+	        for (let j = 0; j < li.length; j++) {
+		        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
+		    }
+	        li[mun].style.backgroundColor = '#fff'
+        	num++
+	        animate(div,-img[0].offsetWidth*num,1)
+	        
+        })
+        //自动播放功能
+        var timer = setInterval(function () {
+        	spanR.click()
+        },2500)
 	</script>
 </body>
 </html>
