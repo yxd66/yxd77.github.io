@@ -113,14 +113,16 @@
 	        },2500)
 	    })
 	    //封装动画函数
-        var animate = function (obj, target, i) {
+        var animate = function (obj, target, i,callback) {
         	clearInterval(obj.timer)
         	obj.timer = setInterval(function () {
-        		obj.style.left = obj.offsetLeft - 50*i+ 'px'
+        		obj.style.left = obj.offsetLeft - 30*i+ 'px'
         		if (obj.offsetLeft == target) {
+        			callback()
         			clearInterval(obj.timer)
         		}
         	},10)
+
         }
         //点击圆点移动图片
         for (let j = 0; j < li.length; j++) {
@@ -139,56 +141,67 @@
 		        	i = 1*(j-index)
 		        } 
 		        index = j
-		        animate(div,L,i)
+		        animate(div,L,i,function(){})
 	        })
         }
         //点击按钮移动图片
         var num = 0
         var mun = 0
+        var flag = true
         var first = img[0].cloneNode(true)
         div.appendChild(first)
         spanL.addEventListener('click',function () {
-        	mun--
-        	index = mun
-        	if (mun < 0) {
-        		mun = 4
+        	if (flag) {
+        		flag = false
+        		mun--
+	        	index = mun
+	        	if (mun < 0) {
+	        		mun = 4
+	        	}
+	        	if (num > 0) {
+	        		num = num - 5
+	        	}
+	        	if (num == -5) {
+		        	num = 0
+		        }
+		        if (num == 0) {
+		        	div.style.left = '-3000px'
+		        }
+		        for (let j = 0; j < li.length; j++) {
+			        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
+			    }
+		        li[mun].style.backgroundColor = '#fff'
+	        	num--
+		        animate(div,-(3000+img[0].offsetWidth*num),-1,function () {
+		        	flag = true
+		        })
         	}
-        	if (num > 0) {
-        		num = num - 5
-        	}
-        	if (num == -5) {
-	        	num = 0
-	        }
-	        if (num == 0) {
-	        	div.style.left = '-3000px'
-	        }
-	        for (let j = 0; j < li.length; j++) {
-		        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
-		    }
-	        li[mun].style.backgroundColor = '#fff'
-        	num--
-	        animate(div,-(3000+img[0].offsetWidth*num),-1)
 	        
         })
         spanR.addEventListener('click',function () {
-        	mun++
-        	index = mun
-        	if (mun > 4) {
-        		mun = 0
+        	if (flag) {
+        		flag = false
+        		mun++
+	        	index = mun
+	        	if (mun > 4) {
+	        		mun = 0
+	        	}
+	        	if (num < 0) {
+	        		num = num + 5
+	        	}
+	        	if (num == 5) {
+		        	num = 0
+		        	div.style.left = '0px'
+		        }
+		        for (let j = 0; j < li.length; j++) {
+			        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
+			    }
+		        li[mun].style.backgroundColor = '#fff'
+	        	num++
+		        animate(div,-img[0].offsetWidth*num,1,function () {
+		        	flag = true
+		        })
         	}
-        	if (num < 0) {
-        		num = num + 5
-        	}
-        	if (num == 5) {
-	        	num = 0
-	        	div.style.left = '0px'
-	        }
-	        for (let j = 0; j < li.length; j++) {
-		        li[j].style.backgroundColor = 'rgba(255,255,255,.3)'
-		    }
-	        li[mun].style.backgroundColor = '#fff'
-        	num++
-	        animate(div,-img[0].offsetWidth*num,1)
 	        
         })
         //自动播放功能
